@@ -1,0 +1,49 @@
+@import "../utils/functions";
+@import "../utils/mixins";
+@import "../variables";
+
+.signIn {
+  @include flex(center, center);
+  flex-direction: column;
+  margin-top: px-to-rem(60px);
+
+  &__hdl {
+    margin-bottom: px-to-rem(30px);
+    margin-top: 0;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: px-to-rem(15px);
+    width: px-to-rem(200px);
+
+    .form-group {
+      display: block;
+
+      input {
+        width: 100%;
+        padding: px-to-rem(10px);
+        border: 1px solid $border-color;
+        border-radius: px-to-rem(20px);
+      }
+    }
+    .form__btn {
+      color: $color-white;
+      background-color: $dar-gray-color;
+      margin-bottom: px-to-rem(30px);
+    }
+  }
+  p {
+    margin-bottom: 0;
+  }
+  p > a:first-child {
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .error {
+    color: $error;
+    text-align: center;
+  }
+}
