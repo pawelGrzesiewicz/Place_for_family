@@ -2,48 +2,70 @@
 @import "../utils/mixins";
 @import "../variables";
 
-.signIn {
-  @include flex(center, center);
+
+.section__signIn {
+  background: linear-gradient(#80FFDB, #64DFDF, #48BFE3, #5390D9, #5E60CE);
+  height: 100vh;
+  width: 100%;
+  @include flex(flex-start, center);
   flex-direction: column;
-  margin-top: px-to-rem(60px);
 
-  &__hdl {
-    margin-bottom: px-to-rem(30px);
-    margin-top: 0;
-  }
-
-  &__form {
-    display: flex;
+  .signIn {
+    margin-top: px-to-rem(60px);
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: px-to-rem(30px);
+    @include flex(center, center);
     flex-direction: column;
-    gap: px-to-rem(15px);
-    width: px-to-rem(200px);
+    box-shadow: 0 px-to-rem(8px) px-to-rem(32px) 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: px-to-rem(20px);
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 
-    .form-group {
-      display: block;
+    &__hdl {
+      margin-bottom: px-to-rem(30px);
+      margin-top: 0;
+    }
 
-      input {
-        width: 100%;
-        padding: px-to-rem(10px);
-        border: 1px solid $border-color;
-        border-radius: px-to-rem(20px);
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: px-to-rem(15px);
+      width: px-to-rem(220px);
+
+      .form-group {
+        display: block;
+
+        input {
+          width: 100%;
+          padding: px-to-rem(10px);
+          border: 1px solid $day-links_form-btn_inputs;
+          border-radius: px-to-rem(20px);
+          background: none;
+        }
+      }
+
+      .form__btn {
+        color: $day-font-color;
+        background: $day-links_form-btn_inputs;
+        margin-bottom: px-to-rem(120px);
       }
     }
-    .form__btn {
-      color: $color-white;
-      background-color: $dar-gray-color;
-      margin-bottom: px-to-rem(30px);
-    }
-  }
-  p {
-    margin-bottom: 0;
-  }
-  p > a:first-child {
-    font-weight: 600;
-    text-decoration: none;
-  }
 
-  .error {
-    color: $error;
-    text-align: center;
+    p {
+      margin-bottom: 0;
+    }
+
+    p > a:first-child {
+      margin-left: px-to-rem(10px);
+      font-weight: 600;
+      text-decoration: none;
+      color: $day-links_form-btn_inputs;
+    }
+
+    .error {
+      color: $day-links_form-btn_inputs;
+      text-align: center;
+    }
   }
 }

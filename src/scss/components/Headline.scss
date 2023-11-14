@@ -1,0 +1,25 @@
+@import "../utils/functions";
+@import "../utils/mixins";
+@import "../variables";
+
+
+.headline {
+  margin: 0 0 px-to-rem(20px) 0;
+  font-size: $base-font-size;
+  display: flex;
+
+  div {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  h1 {
+    color: $day-links_form-btn_inputs;
+    margin-left: px-to-rem(-20px);
+    margin-bottom: 0;
+  }
+
+  span {
+    margin-left: px-to-rem(5px);
+  }
+}

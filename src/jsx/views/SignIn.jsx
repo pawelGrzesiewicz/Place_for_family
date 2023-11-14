@@ -26,34 +26,36 @@ export default function SignIn() {
     }
 
     return (
-        <div className='signIn'>
-            <h2 className='signIn__hdl'>Sign in</h2>
-            <form className='signIn__form' onSubmit={handleOnSubmit}>
-                <div className='form-group'>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className='form-group'>
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                {error && <p className='error'>{error}</p>}
-                <button type="submit" className='btn form__btn'>Sign in</button>
-            </form>
-            <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
-        </div>
+        <section className='section__signIn'>
+            <div className='signIn'>
+                <h2 className='signIn__hdl'>Sign in</h2>
+                <form className='signIn__form' onSubmit={handleOnSubmit}>
+                    <div className='form-group'>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className='form-group'>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    {error && <p className='error'>{error}</p>}
+                    <button type="submit" className='btn form__btn'>Sign in</button>
+                </form>
+                <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+            </div>
+        </section>
     );
 }
 

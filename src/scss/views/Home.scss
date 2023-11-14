@@ -1,0 +1,22 @@
+@import "../utils/functions";
+@import "../utils/mixins";
+@import "../variables";
+
+.home {
+  padding: px-to-rem(20px);
+  height: 100vh;
+  max-width: px-to-rem(576px);
+}
+
+.day-background {
+  background-image: url(./src/assets/day.png);
+  background-position: center;
+  background-size: cover;
+}
+
+.night-background {
+  background-image: url(./src/assets/night.png);
+  background-position: center;
+  background-size: cover;
+}
+

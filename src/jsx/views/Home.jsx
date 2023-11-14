@@ -1,11 +1,32 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import supabase from '../../api/supabase.js';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import {Headline} from "../components/Headline.jsx";
+import {NavBar} from "../components/NavBar.jsx";
+import {renderSync} from "sass";
 
-export default function Home() {
+export default function Home({familyName}) {
     const navigation = useNavigate();
 
     const [notes, setNotes] = useState(null);
+    const [currentHour, setCurrentHour] = useState(new Date().getHours());
+
+    // const sass = require('sass');
+    //
+    // const result = sass.renderSync({
+    //     data: `$currentHour: ${currentHour}; @import 'DynamicColorsPage';`,
+    // });
+    // console.log(result.css.toString());
+
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentHour(new Date().getHours());
+        }, 1000 * 60);
+
+        return () => clearInterval(intervalId);
+    }, []);
+
 
     useEffect(() => {
         getSession();
@@ -51,18 +72,31 @@ export default function Home() {
         }
     }
 
+    const getBackgroundColor = () => {
+        if (currentHour >= 6 && currentHour < 22) {
+            return 'day-background';
+        } else {
+            return 'night-background';
+        }
+    };
+
     return (
-        <>
-            <h1>Home</h1>
-            <form onSubmit={handleOnSubmit}>
-                <textarea />
-                <button>Save</button>
-            </form>
-            <ul>
-                {notes && notes.map((note) => <li key={note.id}>{note.note}</li>)}
-            </ul>
-            <button onClick={handleSignOut}>Sign out</button>
-        </>
+        <section className={`home ${getBackgroundColor()}`}>
+            <Headline familyName={familyName}/>
+            <NavBar/>
+
+            {/*<form onSubmit={handleOnSubmit}>*/}
+            {/*    <textarea/>*/}
+            {/*    <button>Save</button>*/}
+            {/*</form>*/}
+            {/*<ul>*/}
+            {/*    {notes && notes.map((note) => <li key={note.id}>{note.note}</li>)}*/}
+            {/*</ul>*/}
+            <button
+                className='btn'
+                onClick={handleSignOut}>Sign out
+            </button>
+        </section>
     );
 }
 
