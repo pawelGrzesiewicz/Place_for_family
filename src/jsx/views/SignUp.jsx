@@ -1,29 +1,43 @@
 import supabase from "../../api/supabase.js";
-import {Link, useNavigate} from 'react-router-dom';
-import React, {useState} from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
 
-export default function SignUp({setFamilyName, familyName}) {
+export default function SignUp() {
+
     const navigation = useNavigate();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [city, setCity] = useState('');
+    const [familyName, setFamilyName] = useState('');
     const [error, setError] = useState(null);
 
-    const handleOnSubmit = async (e) => {
+    async function handleOnSubmit(e) {
         e.preventDefault();
 
-        const {data, error} = await supabase.auth.signUp({
+        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
             email: email,
             password: password,
-            familyName: familyName
         });
 
-        if (!error) {
-            navigation('/');
-        } else {
-            setError(error.message)
+        if (signUpError) {
+            console.log(signUpError);
+            setError("Sign up failed. Please try again.");
+            return;
         }
 
-        console.log(error);
+        const { data: insertData, error: insertError } = await supabase
+            .from('familyName')
+            .insert([{ name: familyName, city: city, email: email }])
+            .select();
+
+        if (insertError) {
+            console.log(insertError);
+            setError("Failed to add family name and city. Please try again.");
+            return;
+        }
+
+        navigation('/');
     }
 
     return (
@@ -48,6 +62,16 @@ export default function SignUp({setFamilyName, familyName}) {
                             placeholder="Enter your password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className='form-group'>
+                        <input
+                            type="text"
+                            id="city"
+                            placeholder="Enter your city"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
                             required
                         />
                     </div>

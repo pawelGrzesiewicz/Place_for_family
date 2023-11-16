@@ -1,22 +1,15 @@
 import {useEffect, useState} from 'react';
 import supabase from '../../api/supabase.js';
 import {useNavigate} from 'react-router-dom';
+
 import {Headline} from "../components/Headline.jsx";
 import {NavBar} from "../components/NavBar.jsx";
-import {renderSync} from "sass";
 
-export default function Home({familyName}) {
+export default function Home() {
     const navigation = useNavigate();
 
     const [notes, setNotes] = useState(null);
     const [currentHour, setCurrentHour] = useState(new Date().getHours());
-
-    // const sass = require('sass');
-    //
-    // const result = sass.renderSync({
-    //     data: `$currentHour: ${currentHour}; @import 'DynamicColorsPage';`,
-    // });
-    // console.log(result.css.toString());
 
 
     useEffect(() => {
@@ -27,13 +20,23 @@ export default function Home({familyName}) {
         return () => clearInterval(intervalId);
     }, []);
 
+    const getBackgroundColor = () => {
+        if (currentHour >= 6 && currentHour < 21) {
+            return 'day-background';
+        } else {
+            return 'night-background';
+        }
+    };
+
 
     useEffect(() => {
         getSession();
     }, []);
 
     async function getSession() {
-        const { data, error } = await supabase.auth.getSession();
+        const {data, error} = await supabase.auth.getSession();
+
+        console.log('dane:', data)
 
         if (!data.session) {
             navigation('/signup');
@@ -44,27 +47,20 @@ export default function Home({familyName}) {
     }
 
     async function getNotes() {
-        let { data: notes, error } = await supabase.from('notes').select('*');
+        let {data: notes, error} = await supabase.from('notes').select('*');
 
         if (!error) {
             setNotes(notes);
         }
     }
 
-    async function handleSignOut() {
-        const { error } = await supabase.auth.signOut();
-
-        if (!error) {
-            navigation('/signin');
-        }
-    }
 
     async function handleOnSubmit(e) {
         e.preventDefault();
 
-        const { data, error } = await supabase
+        const {data, error} = await supabase
             .from('notes')
-            .insert([{ note: e.target.elements[0].value }])
+            .insert([{note: e.target.elements[0].value}])
             .select();
 
         if (!error) {
@@ -72,26 +68,28 @@ export default function Home({familyName}) {
         }
     }
 
-    const getBackgroundColor = () => {
-        if (currentHour >= 6 && currentHour < 22) {
-            return 'day-background';
-        } else {
-            return 'night-background';
+
+    async function handleSignOut() {
+        const {error} = await supabase.auth.signOut();
+
+        if (!error) {
+            navigation('/signin');
         }
-    };
+    }
+
 
     return (
         <section className={`home ${getBackgroundColor()}`}>
-            <Headline familyName={familyName}/>
+            <Headline getSession={getSession}/>
             <NavBar/>
 
-            {/*<form onSubmit={handleOnSubmit}>*/}
-            {/*    <textarea/>*/}
-            {/*    <button>Save</button>*/}
-            {/*</form>*/}
-            {/*<ul>*/}
-            {/*    {notes && notes.map((note) => <li key={note.id}>{note.note}</li>)}*/}
-            {/*</ul>*/}
+            <form onSubmit={handleOnSubmit}>
+                <textarea/>
+                <button>Save</button>
+            </form>
+            <ul>
+                {notes && notes.map((note) => <li key={note.id}>{note.note}</li>)}
+            </ul>
             <button
                 className='btn'
                 onClick={handleSignOut}>Sign out
