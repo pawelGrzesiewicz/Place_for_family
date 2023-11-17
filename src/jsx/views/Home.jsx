@@ -4,29 +4,15 @@ import {useNavigate} from 'react-router-dom';
 
 import {Headline} from "../components/Headline.jsx";
 import {NavBar} from "../components/NavBar.jsx";
+import useDayNightMode from "../hooks/useDayNightMode.js";
+import {WeatherBar} from "../components/WeatherBar.jsx";
+import Carousel from "../components/Slider.jsx";
 
 export default function Home() {
     const navigation = useNavigate();
 
     const [notes, setNotes] = useState(null);
-    const [currentHour, setCurrentHour] = useState(new Date().getHours());
-
-
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setCurrentHour(new Date().getHours());
-        }, 1000 * 60);
-
-        return () => clearInterval(intervalId);
-    }, []);
-
-    const getBackgroundColor = () => {
-        if (currentHour >= 6 && currentHour < 21) {
-            return 'day-background';
-        } else {
-            return 'night-background';
-        }
-    };
+    const { getDayNightColors } = useDayNightMode();
 
 
     useEffect(() => {
@@ -35,8 +21,6 @@ export default function Home() {
 
     async function getSession() {
         const {data, error} = await supabase.auth.getSession();
-
-        console.log('dane:', data)
 
         if (!data.session) {
             navigation('/signup');
@@ -79,21 +63,23 @@ export default function Home() {
 
 
     return (
-        <section className={`home ${getBackgroundColor()}`}>
-            <Headline getSession={getSession}/>
+        <section className={`home ${getDayNightColors()}`}>
+            <Headline/>
+            <WeatherBar />
             <NavBar/>
+            <Carousel />
 
-            <form onSubmit={handleOnSubmit}>
-                <textarea/>
-                <button>Save</button>
-            </form>
-            <ul>
-                {notes && notes.map((note) => <li key={note.id}>{note.note}</li>)}
-            </ul>
-            <button
-                className='btn'
+            {/*<form onSubmit={handleOnSubmit}>*/}
+            {/*    <textarea/>*/}
+            {/*    <button>Save</button>*/}
+            {/*</form>*/}
+            {/*<ul>*/}
+            {/*    {notes && notes.map((note) => <li key={note.id}>{note.note}</li>)}*/}
+            {/*</ul>*/}
+            <a
+                className={`out out--${getDayNightColors()}`}
                 onClick={handleSignOut}>Sign out
-            </button>
+            </a>
         </section>
     );
 }

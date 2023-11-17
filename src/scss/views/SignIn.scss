@@ -2,29 +2,35 @@
 @import "../utils/mixins";
 @import "../variables";
 
-
-.section__signIn {
-  background: linear-gradient(#80FFDB, #64DFDF, #48BFE3, #5390D9, #5E60CE);
+.signIn {
   height: 100vh;
   width: 100%;
   @include flex(flex-start, center);
   flex-direction: column;
 
-  .signIn {
+  .signIn-glass {
     margin-top: px-to-rem(60px);
     background-color: rgba(255, 255, 255, 0.4);
-    padding: px-to-rem(30px);
+    padding: px-to-rem(20px);
     @include flex(center, center);
     flex-direction: column;
     box-shadow: 0 px-to-rem(8px) px-to-rem(32px) 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border-radius: px-to-rem(20px);
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
 
     &__hdl {
       margin-bottom: px-to-rem(30px);
       margin-top: 0;
+      background-image: none;
+
+      &--day {
+        color: $Happy-Mom-5-hex;
+      }
+
+      &--night {
+        color: $Poseidon-5-hex;
+      }
     }
 
     &__form {
@@ -36,19 +42,45 @@
       .form-group {
         display: block;
 
-        input {
+        &__in {
           width: 100%;
           padding: px-to-rem(10px);
-          border: 1px solid $day-links_form-btn_inputs;
           border-radius: px-to-rem(20px);
           background: none;
+
+
+          &--day {
+            border: 1px solid $Happy-Mom-4-hex;
+            color: $Happy-Mom-5-hex;
+
+            &::placeholder {
+              color: $Happy-Mom-5-hex;
+            }
+          }
+
+          &--night {
+            border: 1px solid $Poseidon-1-hex;
+            color: $Poseidon-5-hex;
+
+            &::placeholder {
+              color: $Poseidon-1-hex;
+            }
+          }
         }
       }
 
       .form__btn {
-        color: $day-font-color;
-        background: $day-links_form-btn_inputs;
         margin-bottom: px-to-rem(120px);
+
+        &--day {
+          background-color: $Happy-Mom-4-hex;
+          color: $Happy-Mom-5-hex;
+        }
+
+        &--night {
+          background-color: $Poseidon-1-hex;
+          color: $Poseidon-5-hex;
+        }
       }
     }
 
@@ -56,16 +88,35 @@
       margin-bottom: 0;
     }
 
-    p > a:first-child {
-      margin-left: px-to-rem(10px);
-      font-weight: 600;
-      text-decoration: none;
-      color: $day-links_form-btn_inputs;
+    .link {
+
+      &  a {
+        margin-left: px-to-rem(10px);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      &--day,
+      &--day a{
+        color: $Happy-Mom-5-hex;
+      }
+
+      &--night,
+      &--night a{
+        color: $Poseidon-5-hex;
+      }
     }
 
     .error {
-      color: $day-links_form-btn_inputs;
       text-align: center;
+
+      &--day {
+        color: $Happy-Mom-5-hex;
+      }
+
+      &--night {
+        color: $Poseidon-5-hex;
+      }
     }
   }
 }

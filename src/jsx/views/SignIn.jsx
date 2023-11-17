@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
 import supabase from '../../api/supabase';
 import {useNavigate, Link} from 'react-router-dom';
+import useDayNightMode from "../hooks/useDayNightMode.js";
 
 export default function SignIn() {
     const navigation = useNavigate();
+    const {getDayNightColors} = useDayNightMode();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
@@ -26,12 +29,13 @@ export default function SignIn() {
     }
 
     return (
-        <section className='section__signIn'>
-            <div className='signIn'>
-                <h2 className='signIn__hdl'>Sign in</h2>
-                <form className='signIn__form' onSubmit={handleOnSubmit}>
+        <section className={`signIn ${getDayNightColors()}`}>
+            <div className='signIn-glass'>
+                <h2 className={`signIn-glass__hdl signIn-glass__hdl--${getDayNightColors()}`}>Sign In</h2>
+                <form className='signIn-glass__form' onSubmit={handleOnSubmit}>
                     <div className='form-group'>
                         <input
+                            className={`form-group__in form-group__in--${getDayNightColors()}`}
                             type="email"
                             id="email"
                             placeholder="Enter your email"
@@ -42,6 +46,7 @@ export default function SignIn() {
                     </div>
                     <div className='form-group'>
                         <input
+                            className={`form-group__in form-group__in--${getDayNightColors()}`}
                             type="password"
                             id="password"
                             placeholder="Enter your password"
@@ -50,10 +55,10 @@ export default function SignIn() {
                             required
                         />
                     </div>
-                    {error && <p className='error'>{error}</p>}
-                    <button type="submit" className='btn form__btn'>Sign in</button>
+                    {error && <p className={`error error--${getDayNightColors()}`}>{error}</p>}
+                    <button type="submit" className={`btn form__btn form__btn--${getDayNightColors()}`}>Sign in</button>
                 </form>
-                <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+                <p className={`link link--${getDayNightColors()}`}>Don't have an account? <Link to="/signup">Sign up</Link></p>
             </div>
         </section>
     );

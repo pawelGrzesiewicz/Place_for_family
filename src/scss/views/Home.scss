@@ -3,18 +3,26 @@
 @import "../variables";
 
 .home {
-  padding: px-to-rem(20px);
   height: 100vh;
   max-width: px-to-rem(576px);
+  transition: background-color .5s ease;
+
+  .out{
+    margin-bottom: 0;
+    &--day {
+    }
+    &--night {
+  }
+  }
 }
 
-.day-background {
+.day {
   background-image: url(./src/assets/day.png);
   background-position: center;
   background-size: cover;
 }
 
-.night-background {
+.night {
   background-image: url(./src/assets/night.png);
   background-position: center;
   background-size: cover;
