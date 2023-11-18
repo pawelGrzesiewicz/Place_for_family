@@ -67,7 +67,6 @@ export default function Home() {
             <Headline/>
             <WeatherBar />
             <NavBar/>
-            <Carousel />
 
             {/*<form onSubmit={handleOnSubmit}>*/}
             {/*    <textarea/>*/}

@@ -16,7 +16,7 @@ export function Headline() {
     async function getFamilyData() {
 
         try {
-            const { data: { user } } = await supabase.auth.getUser()
+            const {data: {user}} = await supabase.auth.getUser()
             const userEmail = user?.email;
 
             const {data, error} = await supabase
@@ -37,20 +37,23 @@ export function Headline() {
     }
 
     return (
-        <div className={`hdl hdl--${getDayNightColors()}`}>
-            {familyData?.map((family) => (
-                <div key={family.id}>
-                    <span>Welcome</span>
-                    <div className='hdl__name'>
-                        <h1>{family.name}</h1>
-                        <span>family</span>
+        <section className='greeting'>
+            <div className={`hdl hdl--${getDayNightColors()}`}>
+                {familyData?.map((family) => (
+                    <div key={family.id}>
+                        <span>Welcome</span>
+                        <div className='hdl__name'>
+                            <h1>{family.name}</h1>
+                            <span>family</span>
+                        </div>
+                        <div className='hdl__from'>
+                            <span>from</span>
+                            <h1>{family.city}</h1>
+                        </div>
                     </div>
-                    <div className='hdl__from'>
-                        <span>from</span>
-                        <h1>{family.city}</h1>
-                    </div>
-                </div>
-            ))}
-        </div>
+                ))}
+            </div>
+            <div className={`avatar avatar--${getDayNightColors()}`}></div>
+        </section>
     );
 }

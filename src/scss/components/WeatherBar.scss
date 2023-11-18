@@ -25,10 +25,12 @@
       }
     }
 
-    .active--day {
-      color: $Happy-Mom-5-hex;
+
+    .selected--day {
+      color: $Happy-Mom-4-hex;
     }
-    .active--night {
+
+    .selected--night {
       color: $Poseidon-1-hex;
     }
   }
@@ -36,9 +38,11 @@
   .weather__dsc {
     margin-top: px-to-rem(5px);
     text-align: center;
+
     &--day {
       color: $Happy-Mom-3-hex;
     }
+
     &--night {
       color: $Poseidon-2-hex;
     }

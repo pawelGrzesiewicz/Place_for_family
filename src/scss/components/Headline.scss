@@ -2,49 +2,72 @@
 @import "../utils/mixins";
 @import "../variables";
 
-
-.hdl {
-  font-size: $base-font-size;
-  display: flex;
+.greeting {
+  @include flex(space-between, center);
   padding: px-to-rem(20px) px-to-rem(20px);
+  font-size: $base-font-size;
 
-  &--day {
-    color: $Happy-Mom-4-hex;
-  }
-  &--day h1 {
-    color: $Happy-Mom-5-hex;
-  }
-
-  &--night {
-    color: $Poseidon-2-hex;
-  }
-  &--night h1 {
-    color: $Poseidon-1-hex;
-  }
-
-  &__name {
+  .hdl {
     display: flex;
-    align-items: flex-end;
-    h1 {
-      margin-bottom: 0;
-      margin-top: px-to-rem(8.4px);
+
+    &--day {
+      color: $Happy-Mom-4-hex;
     }
-    span {
-      margin-left: px-to-rem(5px);
-      margin-bottom: px-to-rem(3px);
+
+    &--day h1 {
+      color: $Happy-Mom-5-hex;
+    }
+
+    &--night {
+      color: $Poseidon-2-hex;
+    }
+
+    &--night h1 {
+      color: $Poseidon-1-hex;
+    }
+
+    &__name {
+      display: flex;
+      align-items: flex-end;
+
+      h1 {
+        margin-bottom: 0;
+        margin-top: px-to-rem(8.4px);
+      }
+
+      span {
+        margin-left: px-to-rem(5px);
+        margin-bottom: px-to-rem(3px);
+      }
+    }
+
+    &__from {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-left: px-to-rem(20px);
+
+      h1 {
+        font-size: px-to-rem(12px);
+        margin-bottom: 0;
+      }
+
+      span {
+        margin-right: px-to-rem(5px);
+      }
     }
   }
+  .avatar {
+    width: px-to-rem(60px);
+    height: px-to-rem(60px);
+    border-radius: 50%;
 
-  &__from {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-left: px-to-rem(20px);
-    h1 {
-      font-size: px-to-rem(12px);
+    &--day {
+      border: px-to-rem(1px) solid $Happy-Mom-4-hex;
     }
-    span {
-      margin-right: px-to-rem(5px);
+
+    &--night {
+      border: px-to-rem(1px) solid $Poseidon-2-hex;
     }
   }
 }

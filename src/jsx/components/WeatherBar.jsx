@@ -20,36 +20,26 @@ export function WeatherBar() {
     return (
         <section className='weather'>
             <div className='icons'>
-                <NavLink to="/sun" activeClassName={`active--${getDayNightColors()}`}>
                     <GoSun
-                        className={`icon icon__${getDayNightColors()}`}
+                        className={`icon icon__${getDayNightColors()} ${
+                        selectedIcon === "sun" ? `selected--${getDayNightColors()}` : ""
+                        }`}
                         onClick={() => handleIconClick("sun")}
                     />
-                </NavLink>
-                <NavLink to="/rain" activeClassName={`active--${getDayNightColors()}`}>
+
                     <IoRainyOutline
-                        className={`icon icon__${getDayNightColors()}`}
+                        className={`icon icon__${getDayNightColors()} ${
+                        selectedIcon === "rain" ? `selected--${getDayNightColors()}` : ""
+                        }`}
                         onClick={() => handleIconClick("rain")}
                     />
-                </NavLink>
-                <NavLink to="/snow" activeClassName={`active--${getDayNightColors()}`}>
+
                     <IoIosSnow
-                        className={`icon icon__${getDayNightColors()}`}
+                        className={`icon icon__${getDayNightColors()} ${
+                            selectedIcon === "snow" ? `selected--${getDayNightColors()}` : ""
+                        }`}
                         onClick={() => handleIconClick("snow")}
                     />
-                </NavLink>
-
-                {/*<Switch>*/}
-                {/*    <Route path="/sun">*/}
-                {/*        {selectedIcon === "sun" && <SunComponent/>}*/}
-                {/*    </Route>*/}
-                {/*    <Route path="/rain">*/}
-                {/*        {selectedIcon === "rain" && <RainComponent/>}*/}
-                {/*    </Route>*/}
-                {/*    <Route path="/snow">*/}
-                {/*        {selectedIcon === "snow" && <SnowComponent/>}*/}
-                {/*    </Route>*/}
-                {/*</Switch>*/}
             </div>
             <p className={`weather__dsc weather__dsc--${getDayNightColors()}`}>Look out the window and choose the conditions outside, then decide how you want to spend your time</p>
         </section>

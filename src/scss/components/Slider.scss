@@ -9,6 +9,8 @@
 }
 
 .swiper-slide {
+  @include flex(flex-start, center);
+  flex-direction: column;
   background-color: rgba(255, 255, 255, 0.4);
   box-shadow: 0 px-to-rem(8px) px-to-rem(32px) 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
@@ -17,7 +19,50 @@
   background-position: center;
   background-size: cover;
   width: 300px;
-  height: 300px;
+  height: 400px;
+
+  &__hdl {
+    &--day {
+      color: $Happy-Mom-1-hex;
+    }
+    &--night {
+      color: $Poseidon-4-hex;
+    }
+  }
+
+  .icons {
+    @include flex(center, center);
+    gap: px-to-rem(140px);
+
+    .icon {
+      padding: px-to-rem(10px);
+      width: px-to-rem(50px);
+      height: px-to-rem(50px);
+
+      &--day {
+        color: $Happy-Mom-1-hex;
+      }
+
+      &--night {
+        color: $Poseidon-4-hex;
+      }
+    }
+
+    .active--day {
+      color: $Happy-Mom-5-hex;
+    }
+    .active--night {
+      color: $Poseidon-1-hex;
+    }
+  }
+}
+
+.swiper-slide img {
+  display: block;
+  border-radius: px-to-rem(10px);
+  width: px-to-rem(260px);
+  margin: px-to-rem(20px) auto;
+  object-fit: cover;
 }
 
 .options {

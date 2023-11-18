@@ -1,21 +1,22 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { SlLike } from "react-icons/sl";
-import useDayNightMode from '../hooks/useDayNightMode.js'
-
+import React, {useRef, useState} from 'react';
+import {Swiper, SwiperSlide} from 'swiper/react';
+import {SlLike} from "react-icons/sl";
+import {LiaMapMarkedSolid} from "react-icons/lia";
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 
-import '../../scss/components/Slider.scss';
 
+import {EffectCoverflow, Pagination} from 'swiper/modules';
+import useDayNightMode from "../hooks/useDayNightMode.js";
 
-import { EffectCoverflow, Pagination } from 'swiper/modules';
+export default function Slider({data}) {
 
-export default function App() {
+    const formsOfEntertainment = data
     const {getDayNightColors} = useDayNightMode();
 
+    console.log(formsOfEntertainment)
     return (
         <>
             <Swiper
@@ -34,37 +35,24 @@ export default function App() {
                 modules={[EffectCoverflow, Pagination]}
                 className="mySwiper"
             >
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-                    {/*<div className='options'>*/}
-                    {/*    <SlLike className={`options__like options__like--${getDayNightColors()}`}/>*/}
-                    {/*</div>*/}
+                {formsOfEntertainment && formsOfEntertainment.map((form) =>
 
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-                </SwiperSlide>
+                    <SwiperSlide className='swiper-slide'>
+
+                        <h2 className={`swiper-slide__hdl swiper-slide__hdl--${getDayNightColors()}`}>{form.name}</h2>
+
+                        {form && form === 'active' ? (
+                            <img src='./src/assets/active.jpg' alt="Active img"/>
+                        ) : (
+                            <div>No image available</div>
+                        )}
+
+                        <div className='icons'>
+                            <SlLike className={`icon icon--${getDayNightColors()}`}/>
+                            <LiaMapMarkedSolid className={`icon icon--${getDayNightColors()}`}/>
+                        </div>
+                    </SwiperSlide>
+                )}
             </Swiper>
         </>
     );
