@@ -4,14 +4,14 @@
 
 .swiper {
   width: 100%;
-  padding-top: px-to-rem(50px);
-  padding-bottom: px-to-rem(50px);
+  padding-top: px-to-rem(30px);
+  padding-bottom: px-to-rem(30px);
 }
 
 .swiper-slide {
   @include flex(flex-start, center, column);
   background-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 px-to-rem(8px) px-to-rem(32px) 0 rgba(31, 38, 135, 0.37);
+  box-shadow: 0 px-to-rem(4px) px-to-rem(32px) 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: px-to-rem(20px);
@@ -30,7 +30,7 @@
 
   .icons {
     @include flex(center, center);
-    gap: px-to-rem(140px);
+    gap: px-to-rem(60px);
 
     .icon {
       padding: px-to-rem(10px);
@@ -43,6 +43,14 @@
 
       &--night {
         color: $Poseidon-4-hex;
+      }
+
+      &.liked--day {
+        color: $Happy-Mom-5-hex;
+      }
+
+      &.liked--night {
+        color: $Poseidon-1-hex;
       }
     }
 
@@ -59,7 +67,7 @@
   display: block;
   border-radius: px-to-rem(10px);
   width: px-to-rem(260px);
-  margin: px-to-rem(20px) auto;
+  margin-inline: px-to-rem(20px);
   object-fit: cover;
 }
 

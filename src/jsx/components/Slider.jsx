@@ -1,22 +1,27 @@
-import React, {useRef, useState} from 'react';
-import {Swiper, SwiperSlide} from 'swiper/react';
-import {SlLike} from "react-icons/sl";
-import {LiaMapMarkedSolid} from "react-icons/lia";
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { PiThumbsUpLight } from "react-icons/pi";
+import { PiMapPinLight } from "react-icons/pi";
+import { PiListPlusLight } from "react-icons/pi";
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 
+import { EffectCoverflow, Pagination } from 'swiper/modules';
+import useDayNightMode from '../hooks/useDayNightMode.js';
 
-import {EffectCoverflow, Pagination} from 'swiper/modules';
-import useDayNightMode from "../hooks/useDayNightMode.js";
+export default function Slider({ data }) {
+    const formOfRecreation = data;
+    const { getDayNightColors } = useDayNightMode();
+    const [likedForms, setLikedForms] = useState({});
 
-export default function Slider({data}) {
+    const handleLikeClick = (formId) => {
+        setLikedForms((prevLikedForms) => {
+            return { ...prevLikedForms, [formId]: !prevLikedForms[formId] };
+        });
+    };
 
-    const formOfRecreation = data
-    const {getDayNightColors} = useDayNightMode();
-
-    console.log(formOfRecreation)
     return (
         <>
             <Swiper
@@ -35,23 +40,24 @@ export default function Slider({data}) {
                 modules={[EffectCoverflow, Pagination]}
                 className="mySwiper"
             >
-                {formOfRecreation?.map((form) =>
-                    <SwiperSlide key={form.id} className='swiper-slide'>
-
+                {formOfRecreation?.map((form) => (
+                    <SwiperSlide key={form.id} className="swiper-slide">
                         <h2 className={`swiper-slide__hdl swiper-slide__hdl--${getDayNightColors()}`}>{form.name}</h2>
-
-                        {form && form === 'active' ? (
-                            <img src='./src/assets/active.jpg' alt="Active img"/>
-                        ) : (
-                            <div>No image available</div>
-                        )}
-
-                        <div className='icons'>
-                            <SlLike className={`icon icon--${getDayNightColors()}`}/>
-                            <LiaMapMarkedSolid className={`icon icon--${getDayNightColors()}`}/>
+                        <img
+                            style={{ height: '200px' }}
+                            src={`./src/assets/${form.name.toLowerCase()}.jpg`}
+                            alt={`${form.name} img`}
+                        />
+                        <div className="icons">
+                            <PiThumbsUpLight
+                                className={`icon icon--${getDayNightColors()} ${likedForms[form.id] ? `liked--${getDayNightColors()}` : ''}`}
+                                onClick={() => handleLikeClick(form.id)}
+                            />
+                            <PiListPlusLight className={`icon icon--${getDayNightColors()}`} />
+                            <PiMapPinLight className={`icon icon--${getDayNightColors()}`} />
                         </div>
                     </SwiperSlide>
-                )}
+                ))}
             </Swiper>
         </>
     );

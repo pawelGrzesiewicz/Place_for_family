@@ -12,7 +12,7 @@ export function NavBar() {
     const [chill, setChill] = useState(null);
 
     const [selectedOption, setSelectedOption] = useState('active');
-    const [selectedWeather, setSelectedWeather] = useState(null);
+    const [selectedWeather, setSelectedWeather] = useState('sun');
 
 
     useEffect(() => {
