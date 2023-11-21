@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import supabase from "../../api/supabase.js";
 import useDayNightMode from "../hooks/useDayNightMode.js";
+import {FaTheRedYeti} from "react-icons/fa";
+
 
 export function Headline() {
 
@@ -20,7 +22,7 @@ export function Headline() {
             const userEmail = user?.email;
 
             const {data, error} = await supabase
-                .from('familyName')
+                .from('usersData')
                 .select('*')
                 .eq('email', userEmail);
 
@@ -53,7 +55,7 @@ export function Headline() {
                     </div>
                 ))}
             </div>
-            <div className={`avatar avatar--${getDayNightColors()}`}></div>
+            <FaTheRedYeti className={`avatar__icon avatar__icon--${getDayNightColors()}`}/>
         </section>
     );
 }

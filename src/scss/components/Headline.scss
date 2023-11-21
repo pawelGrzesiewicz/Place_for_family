@@ -57,17 +57,21 @@
       }
     }
   }
-  .avatar {
-    width: px-to-rem(60px);
-    height: px-to-rem(60px);
-    border-radius: 50%;
 
-    &--day {
-      border: px-to-rem(1px) solid $Happy-Mom-4-hex;
-    }
 
-    &--night {
-      border: px-to-rem(1px) solid $Poseidon-2-hex;
+    
+    .avatar__icon {@include flex(center, center);
+
+      width: px-to-rem(55px);
+      height: px-to-rem(55px);
+
+      &--day {
+        color: $Happy-Mom-4-hex;
+      }
+
+      &--night {
+        color: $Poseidon-2-hex;
+      }
     }
   }
-}
+

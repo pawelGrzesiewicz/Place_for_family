@@ -10,7 +10,7 @@
 
   .signUp-glass {
     margin-top: px-to-rem(60px);
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.4);
     padding: px-to-rem(20px);
     @include flex(center, center);
     flex-direction: column;
@@ -52,6 +52,8 @@
           &--day {
             border: 1px solid $Happy-Mom-4-hex;
             color: $Happy-Mom-5-hex;
+            caret-color: $Happy-Mom-5-hex;
+            outline: $Happy-Mom-5-hex;
 
             &::placeholder {
               color: $Happy-Mom-5-hex;
@@ -61,6 +63,8 @@
           &--night {
             border: 1px solid $Poseidon-1-hex;
             color: $Poseidon-5-hex;
+            caret-color: $Poseidon-5-hex;
+            outline: $Poseidon-5-hex;
 
             &::placeholder {
               color: $Poseidon-1-hex;

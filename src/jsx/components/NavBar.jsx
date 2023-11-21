@@ -1,23 +1,25 @@
 import React, {useEffect, useState} from "react";
-import useDayNightMode from "../hooks/useDayNightMode.js";
 import supabase from "../../api/supabase.js";
 import Slider from "./Slider.jsx";
+import {WeatherBar} from "./WeatherBar.jsx";
+import {RecreationOptionsBar} from "./RecreationOptionsBar.jsx";
 
 export function NavBar() {
-    const {getDayNightColors} = useDayNightMode();
+
 
     const [active, setActive] = useState(null);
     const [learn, setLearn] = useState(null);
     const [chill, setChill] = useState(null);
-    const [selectedNavItem, setSelectedNavItem] = useState('active');
 
-    console.log(selectedNavItem);
+    const [selectedOption, setSelectedOption] = useState('active');
+    const [selectedWeather, setSelectedWeather] = useState(null);
+
 
     useEffect(() => {
         getActive();
         getEducation();
         getChill();
-    }, [selectedNavItem]);
+    }, [selectedOption]);
 
     async function getActive() {
         let {data: activeData, error} = await supabase
@@ -25,7 +27,7 @@ export function NavBar() {
             .select("*");
 
         if (!error) {
-            setActive(activeData);
+            setActive(parseArray(activeData));
         }
     }
 
@@ -35,7 +37,7 @@ export function NavBar() {
             .select("*");
 
         if (!error) {
-            setLearn(learnData);
+            setLearn(parseArray(learnData));
         }
     }
 
@@ -45,48 +47,63 @@ export function NavBar() {
             .select("*");
 
         if (!error) {
-            setChill(chillOutData);
+            setChill(parseArray(chillOutData));
         }
     }
 
-    const handleNavItemClick = (navItem) => {
-        setSelectedNavItem(navItem);
-    };
+    function parseArray(data) {
+        if (data && data.length > 0) {
+            return data.map(item => ({
+                ...item,
+                weather: Array.isArray(item.weather) ? item.weather : JSON.parse(item.weather)
+            }));
+        }
+        return data;
+    }
+
 
     return (
         <>
-            <nav className="nav">
-                <span
-                    className={`nav__item nav__item--${getDayNightColors()} ${
-                        selectedNavItem === "active" ? `selected--${getDayNightColors()}` : ""
-                    }`}
-                    onClick={() => handleNavItemClick("active")}
-                >
-                    Active
-                </span>
-                <span
-                    className={`nav__item nav__item--${getDayNightColors()} ${
-                        selectedNavItem === "learn" ? `selected--${getDayNightColors()}` : ""
-                    }`}
-                    onClick={() => handleNavItemClick("learn")}
-                >
-                    Learn
-                </span>
-                <span
-                    className={`nav__item nav__item--${getDayNightColors()} ${
-                        selectedNavItem === "chill" ? `selected--${getDayNightColors()}` : ""
-                    }`}
-                    onClick={() => handleNavItemClick("chill")}
-                >
-                    Chill
-                </span>
-            </nav>
+            <WeatherBar
+                selectedWeather={selectedWeather}
+                setSelectedWeather={setSelectedWeather}
+            />
 
-            {selectedNavItem === "active" && <Slider data={active}/>}
-            {selectedNavItem === "learn" && <Slider data={learn}/>}
-            {selectedNavItem === "chill" && <Slider data={chill}/>}
+            <RecreationOptionsBar
+                setSelectedOption={setSelectedOption}
+                selectedOption={selectedOption}
+            />
 
+            {selectedOption === "active" && (
+                <Slider data={active && selectedWeather
+                    ? active.filter((item) =>
+                        Array.isArray(item.weather)
+                            ? item.weather.includes(selectedWeather)
+                            : item.weather === selectedWeather
+                    )
+                    : active
+                }/>
+            )}
+            {selectedOption === "learn" && (
+                <Slider data={learn && selectedWeather
+                    ? learn.filter((item) =>
+                        Array.isArray(item.weather)
+                            ? item.weather.includes(selectedWeather)
+                            : item.weather === selectedWeather
+                    )
+                    : learn
+                }/>
+            )}
+            {selectedOption === "chill" && (
+                <Slider data={chill && selectedWeather
+                    ? chill.filter((item) =>
+                        Array.isArray(item.weather)
+                            ? item.weather.includes(selectedWeather)
+                            : item.weather === selectedWeather
+                    )
+                    : chill
+                }/>
+            )}
         </>
     );
-
 }

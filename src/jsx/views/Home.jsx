@@ -5,11 +5,9 @@ import {useNavigate} from 'react-router-dom';
 import {Headline} from "../components/Headline.jsx";
 import {NavBar} from "../components/NavBar.jsx";
 import useDayNightMode from "../hooks/useDayNightMode.js";
-import {WeatherBar} from "../components/WeatherBar.jsx";
-import Carousel from "../components/Slider.jsx";
+import Footer from "../components/Footer.jsx";
 
 export default function Home() {
-    const navigation = useNavigate();
 
     const [notes, setNotes] = useState(null);
     const { getDayNightColors } = useDayNightMode();
@@ -39,33 +37,26 @@ export default function Home() {
     }
 
 
-    async function handleOnSubmit(e) {
-        e.preventDefault();
+    // async function handleOnSubmit(e) {
+    //     e.preventDefault();
+    //
+    //     const {data, error} = await supabase
+    //         .from('notes')
+    //         .insert([{note: e.target.elements[0].value}])
+    //         .select();
+    //
+    //     if (!error) {
+    //         setNotes(prev => [...prev, data[0]]);
+    //     }
+    // }
 
-        const {data, error} = await supabase
-            .from('notes')
-            .insert([{note: e.target.elements[0].value}])
-            .select();
-
-        if (!error) {
-            setNotes(prev => [...prev, data[0]]);
-        }
-    }
 
 
-    async function handleSignOut() {
-        const {error} = await supabase.auth.signOut();
-
-        if (!error) {
-            navigation('/signin');
-        }
-    }
 
 
     return (
         <section className={`home ${getDayNightColors()}`}>
             <Headline/>
-            <WeatherBar />
             <NavBar/>
 
             {/*<form onSubmit={handleOnSubmit}>*/}
@@ -75,10 +66,8 @@ export default function Home() {
             {/*<ul>*/}
             {/*    {notes && notes.map((note) => <li key={note.id}>{note.note}</li>)}*/}
             {/*</ul>*/}
-            <a
-                className={`out out--${getDayNightColors()}`}
-                onClick={handleSignOut}>Sign out
-            </a>
+
+            <Footer/>
         </section>
     );
 }

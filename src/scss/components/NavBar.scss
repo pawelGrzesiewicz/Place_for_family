@@ -14,14 +14,14 @@
     padding: px-to-rem(10px) px-to-rem(20px);
     cursor: pointer;
 
+      &--day {
+        color: $Happy-Mom-3-hex;
+        }
 
-    &--day {
-      color: $Happy-Mom-3-hex;
-    }
 
-    &--night {
-      color: $Poseidon-4-hex;
-    }
+      &--night {
+        color: $Poseidon-4-hex;
+      }
   }
 
   .selected--day {

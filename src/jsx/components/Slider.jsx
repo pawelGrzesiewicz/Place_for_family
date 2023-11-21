@@ -13,10 +13,10 @@ import useDayNightMode from "../hooks/useDayNightMode.js";
 
 export default function Slider({data}) {
 
-    const formsOfEntertainment = data
+    const formOfRecreation = data
     const {getDayNightColors} = useDayNightMode();
 
-    console.log(formsOfEntertainment)
+    console.log(formOfRecreation)
     return (
         <>
             <Swiper
@@ -35,9 +35,8 @@ export default function Slider({data}) {
                 modules={[EffectCoverflow, Pagination]}
                 className="mySwiper"
             >
-                {formsOfEntertainment && formsOfEntertainment.map((form) =>
-
-                    <SwiperSlide className='swiper-slide'>
+                {formOfRecreation?.map((form) =>
+                    <SwiperSlide key={form.id} className='swiper-slide'>
 
                         <h2 className={`swiper-slide__hdl swiper-slide__hdl--${getDayNightColors()}`}>{form.name}</h2>
 

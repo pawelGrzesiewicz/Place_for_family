@@ -13,6 +13,9 @@ export default function SignUp() {
     const [city, setCity] = useState('');
     const [familyName, setFamilyName] = useState('');
     const [error, setError] = useState(null);
+    const [avatar, setAvatar] = useState(null);
+
+    console.log(avatar);
 
     async function handleOnSubmit(e) {
         e.preventDefault();
@@ -29,7 +32,7 @@ export default function SignUp() {
         }
 
         const { data: insertData, error: insertError } = await supabase
-            .from('familyName')
+            .from('usersData')
             .insert([{ name: familyName, city: city, email: email }])
             .select();
 
@@ -91,6 +94,7 @@ export default function SignUp() {
                             required
                         />
                     </div>
+
                     {error && <p className={`error error--${getDayNightColors()}`}>{error}</p>}
                     <button type="submit" className={`btn form__btn form__btn--${getDayNightColors()}`}>Sign up</button>
                     <p className={`link link--${getDayNightColors()}`}>Already have an account ? <Link to="/signin">Sign in</Link></p>

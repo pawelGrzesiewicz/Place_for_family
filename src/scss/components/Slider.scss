@@ -9,8 +9,7 @@
 }
 
 .swiper-slide {
-  @include flex(flex-start, center);
-  flex-direction: column;
+  @include flex(flex-start, center, column);
   background-color: rgba(255, 255, 255, 0.4);
   box-shadow: 0 px-to-rem(8px) px-to-rem(32px) 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
@@ -19,7 +18,6 @@
   background-position: center;
   background-size: cover;
   width: 300px;
-  height: 400px;
 
   &__hdl {
     &--day {
@@ -36,8 +34,8 @@
 
     .icon {
       padding: px-to-rem(10px);
-      width: px-to-rem(50px);
-      height: px-to-rem(50px);
+      width: px-to-rem(45px);
+      height: px-to-rem(45px);
 
       &--day {
         color: $Happy-Mom-1-hex;
