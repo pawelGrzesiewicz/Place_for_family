@@ -1,0 +1,82 @@
+@import "../utils/functions";
+@import "../utils/mixins";
+@import "../variables";
+
+
+.footer {
+  max-width: px-to-rem(576px);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  @include flex(center, center);
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 px-to-rem(4px) px-to-rem(32px) 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 20px 20px 0 0;
+
+
+  .out {
+    @include flex(center, center);
+    margin-top: px-to-rem(10px);
+
+    &__hdl {
+      margin: 0;
+      &--day {
+        color: $Happy-Mom-3-hex;
+      }
+
+      &--night {
+        color: $Poseidon-3-hex;
+      }
+    }
+
+    &__link {
+      font-weight: 600;
+      margin-left: px-to-rem(15px);
+      cursor: pointer;
+
+      &--day {
+        color: $Happy-Mom-1-hex;
+      }
+
+      &--night {
+        color: $Poseidon-2-hex;
+      }
+    }
+  }
+
+  .made {
+    @include flex(center, center);
+
+    a {
+      @include flex(center, center);
+    }
+
+
+    &__hdl {
+      &--day {
+        color: $Happy-Mom-3-hex;
+      }
+
+      &--night {
+        color: $Poseidon-3-hex;
+      }
+    }
+
+    &__icon {
+      margin-right: px-to-rem(15px);
+      width: px-to-rem(15px);
+      height: px-to-rem(15px);
+      &--day {
+        color: $Happy-Mom-1-hex;
+      }
+
+      &--night {
+        color: $Poseidon-2-hex;
+      }
+    }
+  }
+
+}

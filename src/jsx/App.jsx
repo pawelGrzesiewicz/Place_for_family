@@ -3,6 +3,7 @@ import '../scss/App.scss';
 import Home from "./views/Home.jsx";
 import SignUp from "./views/SignUp.jsx";
 import SignIn from "./views/SignIn.jsx";
+import Map from "./views/Map.jsx";
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/signup" element={<SignUp/>}/>
                 <Route path="/signin" element={<SignIn/>}/>
+                <Route path='/map' element={<Map/>}/>
             </Routes>
         </Router>
     );

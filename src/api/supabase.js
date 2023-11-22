@@ -5,4 +5,17 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
+export async function updateLikedStatus(table, id, liked) {
+    const { data, error } = await supabase
+        .from(table)
+        .update({ liked })
+        .eq('id', id);
+
+    if (error) {
+        console.error('Error updating liked status:', error);
+    }
+
+    return data;
+}
+
 export default supabase;

@@ -1,0 +1,82 @@
+@import "../utils/functions";
+@import "../utils/mixins";
+@import "../variables";
+
+.greeting {
+  @include flex(space-between, center);
+  padding: px-to-rem(20px) px-to-rem(20px);
+  font-size: $base-font-size;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 px-to-rem(4px) px-to-rem(32px) 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 0 0 20px 20px;
+
+  .hdl {
+    display: flex;
+
+    &--day {
+      color: $Happy-Mom-4-hex;
+    }
+
+    &--day h1 {
+      color: $Happy-Mom-5-hex;
+    }
+
+    &--night {
+      color: $Poseidon-2-hex;
+    }
+
+    &--night h1 {
+      color: $Poseidon-1-hex;
+    }
+
+    &__name {
+      display: flex;
+      align-items: flex-end;
+
+      h1 {
+        margin-bottom: 0;
+        margin-top: px-to-rem(8.4px);
+      }
+
+      span {
+        margin-left: px-to-rem(5px);
+        margin-bottom: px-to-rem(3px);
+      }
+    }
+
+    &__from {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-left: px-to-rem(20px);
+
+      h1 {
+        font-size: px-to-rem(12px);
+        margin-bottom: 0;
+      }
+
+      span {
+        margin-right: px-to-rem(5px);
+      }
+    }
+  }
+
+
+    
+    .avatar__icon {@include flex(center, center);
+
+      width: px-to-rem(55px);
+      height: px-to-rem(55px);
+
+      &--day {
+        color: $Happy-Mom-4-hex;
+      }
+
+      &--night {
+        color: $Poseidon-2-hex;
+      }
+    }
+  }
+

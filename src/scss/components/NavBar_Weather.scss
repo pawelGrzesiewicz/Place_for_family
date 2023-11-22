@@ -1,0 +1,51 @@
+@import "../utils/functions";
+@import "../utils/mixins";
+@import "../variables";
+
+
+.weather {
+  margin-top: px-to-rem(20px);
+  padding: 0 px-to-rem(20px);
+
+  .icons {
+    @include flex(center, center);
+    gap: px-to-rem(60px);
+
+    .icon {
+      padding: px-to-rem(10px);
+      width: px-to-rem(50px);
+      height: px-to-rem(50px);
+
+      &__day {
+        color: $Happy-Mom-3-hex;
+      }
+
+      &__night {
+        color: $Poseidon-4-hex;
+      }
+    }
+
+
+    .selected--day {
+      color: $Happy-Mom-4-hex;
+    }
+
+    .selected--night {
+      color: $Poseidon-1-hex;
+    }
+  }
+
+  .weather__dsc {
+    margin-top: px-to-rem(5px);
+    text-align: center;
+
+    &--day {
+      color: $Happy-Mom-3-hex;
+    }
+
+    &--night {
+      color: $Poseidon-2-hex;
+    }
+  }
+}
+

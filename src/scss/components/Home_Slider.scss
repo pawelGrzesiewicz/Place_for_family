@@ -1,0 +1,100 @@
+@import "../utils/functions";
+@import "../utils/mixins";
+@import "../variables";
+
+
+.slider {
+  height: 100%;
+  .swiper {
+    width: 100%;
+    padding-top: px-to-rem(30px);
+    padding-bottom: px-to-rem(30px);
+  }
+
+  .swiper-slide {
+    @include flex(flex-start, center, column);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 px-to-rem(4px) px-to-rem(32px) 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: px-to-rem(20px);
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+
+    &__hdl {
+      &--day {
+        color: $Happy-Mom-5-hex;
+      }
+
+      &--night {
+        color: $Poseidon-4-hex;
+      }
+    }
+
+    img {
+      height: px-to-rem(200px);
+      margin-bottom: px-to-rem(5px);
+    }
+
+    .icons {
+      @include flex(center, center);
+      gap: px-to-rem(60px);
+
+      .icon {
+        padding: px-to-rem(10px);
+        width: px-to-rem(45px);
+        height: px-to-rem(45px);
+
+        &--day {
+          color: $Happy-Mom-1-hex;
+        }
+
+        &--night {
+          color: $Poseidon-3-hex;
+        }
+
+        &.liked--day {
+          color: $Happy-Mom-4-hex;
+        }
+
+        &.liked--night {
+          color: $Poseidon-1-hex;
+        }
+      }
+
+      .active--day {
+        color: $Happy-Mom-5-hex;
+      }
+
+      .active--night {
+        color: $Poseidon-1-hex;
+      }
+    }
+  }
+
+  .swiper-slide img {
+    display: block;
+    border-radius: px-to-rem(10px);
+    width: px-to-rem(260px);
+    margin-inline: px-to-rem(20px);
+    object-fit: cover;
+  }
+
+  .options {
+
+    &__like {
+      padding: px-to-rem(10px);
+      width: px-to-rem(50px);
+      height: px-to-rem(50px);
+
+      &--day {
+        color: $Happy-Mom-3-hex;
+      }
+
+      &--night {
+        color: $Poseidon-4-hex;
+      }
+    }
+  }
+}

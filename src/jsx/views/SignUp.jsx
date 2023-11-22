@@ -1,16 +1,21 @@
 import supabase from "../../api/supabase.js";
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from "react";
+import useDayNightMode from "../hooks/useDayNightMode.js";
 
 export default function SignUp() {
 
     const navigation = useNavigate();
+    const {getDayNightColors} = useDayNightMode();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [city, setCity] = useState('');
     const [familyName, setFamilyName] = useState('');
     const [error, setError] = useState(null);
+    const [avatar, setAvatar] = useState(null);
+
+    console.log(avatar);
 
     async function handleOnSubmit(e) {
         e.preventDefault();
@@ -27,7 +32,7 @@ export default function SignUp() {
         }
 
         const { data: insertData, error: insertError } = await supabase
-            .from('familyName')
+            .from('usersData')
             .insert([{ name: familyName, city: city, email: email }])
             .select();
 
@@ -41,12 +46,13 @@ export default function SignUp() {
     }
 
     return (
-        <section className='section__signUp'>
-            <div className='signUp'>
-                <h2 className='signUp__hdl'>Sign Up</h2>
-                <form className='signUp__form' onSubmit={handleOnSubmit}>
+        <section className={`signUp ${getDayNightColors()}`}>
+            <div className='signUp-glass'>
+                <h2 className={`signUp-glass__hdl signUp-glass__hdl--${getDayNightColors()}`}>Sign Up</h2>
+                <form className='signUp-glass__form' onSubmit={handleOnSubmit}>
                     <div className='form-group'>
                         <input
+                            className={`form-group__in form-group__in--${getDayNightColors()}`}
                             type="email"
                             id="email"
                             placeholder="Enter your email"
@@ -57,6 +63,7 @@ export default function SignUp() {
                     </div>
                     <div className='form-group'>
                         <input
+                            className={`form-group__in form-group__in--${getDayNightColors()}`}
                             type="password"
                             id="password"
                             placeholder="Enter your password"
@@ -67,6 +74,7 @@ export default function SignUp() {
                     </div>
                     <div className='form-group'>
                         <input
+                            className={`form-group__in form-group__in--${getDayNightColors()}`}
                             type="text"
                             id="city"
                             placeholder="Enter your city"
@@ -77,6 +85,7 @@ export default function SignUp() {
                     </div>
                     <div className='form-group'>
                         <input
+                            className={`form-group__in form-group__in--${getDayNightColors()}`}
                             type="text"
                             id="familyName"
                             placeholder="Enter your family name"
@@ -85,9 +94,10 @@ export default function SignUp() {
                             required
                         />
                     </div>
-                    {error && <p className='error'>{error}</p>}
-                    <button type="submit" className='btn form__btn'>Sign up</button>
-                    <p>Already have an account ? <Link to="/signin">Sign in</Link></p>
+
+                    {error && <p className={`error error--${getDayNightColors()}`}>{error}</p>}
+                    <button type="submit" className={`btn form__btn form__btn--${getDayNightColors()}`}>Sign up</button>
+                    <p className={`link link--${getDayNightColors()}`}>Already have an account ? <Link to="/signin">Sign in</Link></p>
                 </form>
             </div>
         </section>

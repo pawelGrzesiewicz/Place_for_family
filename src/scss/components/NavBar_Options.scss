@@ -1,0 +1,34 @@
+@import "../utils/functions";
+@import "../utils/mixins";
+@import "../variables";
+
+
+.nav {
+  display: flex;
+  gap: px-to-rem(35px);
+  justify-content: center;
+
+  &__item {
+    text-decoration: none;
+    font-weight: 600;
+    padding: px-to-rem(10px) px-to-rem(20px);
+    cursor: pointer;
+
+      &--day {
+        color: $Happy-Mom-3-hex;
+        }
+
+
+      &--night {
+        color: $Poseidon-4-hex;
+      }
+  }
+
+  .selected--day {
+    color: $Happy-Mom-4-hex;
+  }
+
+  .selected--night {
+    color: $Poseidon-1-hex;
+  }
+}
