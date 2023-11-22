@@ -2,7 +2,7 @@ import React from "react";
 import useDayNightMode from "../hooks/useDayNightMode.js";
 
 
-export function RecreationOptionsBar ({setSelectedOption, selectedOption}) {
+export function NavBar_Options ({setSelectedOption, selectedOption}) {
 
 
     const {getDayNightColors} = useDayNightMode();

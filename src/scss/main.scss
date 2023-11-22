@@ -8,8 +8,8 @@
 @import './views/SignIn';
 
 //components
-@import './components/Headline';
-@import "./components/WeatherBar";
-@import "./components/NavBar";
-@import "./components/Slider";
+@import 'components/Home_Headline';
+@import "components/NavBar_Weather";
+@import "components/NavBar_Options";
+@import "components/Home_Slider";
 @import "./components/Footer";

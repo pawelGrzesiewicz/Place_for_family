@@ -4,7 +4,7 @@ import useDayNightMode from "../hooks/useDayNightMode.js";
 import {FaTheRedYeti} from "react-icons/fa";
 
 
-export function Headline() {
+export function Home_Headline() {
 
     const [familyData, setFamilyData] = useState(null);
     const [error, setError] = useState(null);

@@ -5,7 +5,7 @@ import {GoSun} from "react-icons/go";
 import {IoRainyOutline} from "react-icons/io5";
 import {IoIosSnow} from "react-icons/io";
 
-export function WeatherBar({selectedWeather, setSelectedWeather}) {
+export function NavBar_Weather({selectedWeather, setSelectedWeather}) {
     const {getDayNightColors} = useDayNightMode();
 
     const handleWeatherIconClick = (weatherIcon) => {

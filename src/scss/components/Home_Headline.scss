@@ -6,6 +6,11 @@
   @include flex(space-between, center);
   padding: px-to-rem(20px) px-to-rem(20px);
   font-size: $base-font-size;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 px-to-rem(4px) px-to-rem(32px) 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 0 0 20px 20px;
 
   .hdl {
     display: flex;

@@ -12,7 +12,7 @@ const useDayNightMode = () => {
   }, []);
 
   const getDayNightColors = () => {
-    return currentHour >= 6 && currentHour < 10 ? 'day' : 'night';
+    return currentHour >= 6 && currentHour < 21 ? 'day' : 'night';
   };
 
   return { getDayNightColors };

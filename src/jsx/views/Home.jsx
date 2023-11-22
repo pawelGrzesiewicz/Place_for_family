@@ -2,8 +2,8 @@ import {useEffect, useState} from 'react';
 import supabase from '../../api/supabase.js';
 import {useNavigate} from 'react-router-dom';
 
-import {Headline} from "../components/Headline.jsx";
-import {NavBar} from "../components/NavBar.jsx";
+import {Home_Headline} from "../components/Home_Headline.jsx";
+import {Home_NavBar} from "../components/Home_NavBar.jsx";
 import useDayNightMode from "../hooks/useDayNightMode.js";
 import Footer from "../components/Footer.jsx";
 
@@ -56,8 +56,8 @@ export default function Home() {
 
     return (
         <section className={`home ${getDayNightColors()}`}>
-            <Headline/>
-            <NavBar/>
+            <Home_Headline/>
+            <Home_NavBar/>
 
             {/*<form onSubmit={handleOnSubmit}>*/}
             {/*    <textarea/>*/}
