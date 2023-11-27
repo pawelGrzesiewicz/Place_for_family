@@ -6,6 +6,7 @@
 @import './views/Home';
 @import './views/SignUp';
 @import './views/SignIn';
+@import "./views/AddOption";
 
 //components
 @import 'components/Home_Headline';
@@ -13,3 +14,5 @@
 @import "components/NavBar_Options";
 @import "components/Home_Slider";
 @import "./components/Footer";
+@import "./components/SearchEngine_Headline";
+@import "./components/Home_AddYourOwnOption";

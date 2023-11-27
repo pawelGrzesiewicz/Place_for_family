@@ -1,0 +1,33 @@
+@import "../utils/functions";
+@import "../utils/mixins";
+@import "../variables";
+
+
+.search {
+  @include flex(center, center, column);
+  margin: px-to-rem(20px);
+
+  h2 {
+    text-transform: uppercase;
+  }
+
+  .distance {
+    width: 100%;
+    margin-top: px-to-rem(10px);
+    @include flex(space-between, center);
+
+    &__dsc {
+
+    }
+
+    &__slider {
+      width: 75%;
+    }
+  }
+
+  &__btn {
+    width: 100%;
+    margin-top: px-to-rem(10px);
+  }
+
+}

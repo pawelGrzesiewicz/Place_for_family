@@ -1,0 +1,39 @@
+@import "../utils/functions";
+@import "../utils/mixins";
+@import "../variables";
+
+
+.add-option {
+  @include flex(center, center);
+  margin: 12%;
+  padding: px-to-rem(10px);
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 px-to-rem(4px) px-to-rem(32px) 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 20px;
+  text-decoration: none;
+
+  &__icon {
+    margin-right: px-to-rem(15px);
+    width: px-to-rem(15px);
+    height: px-to-rem(15px);
+    &--day{
+      color: $Happy-Mom-1-hex;
+    }
+    &--night {
+      color: $Poseidon-2-hex;
+    }
+  }
+
+  &__dsc {
+    margin: 0;
+    font-weight: 600;
+    &--day{
+      color: $Happy-Mom-1-hex;
+    }
+    &--night {
+      color: $Poseidon-2-hex;
+    }
+  }
+}

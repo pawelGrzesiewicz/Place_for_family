@@ -20,10 +20,6 @@ export default function Home_Slider({data, likedData, onLikeClick}) {
         onLikeClick(formId);
     };
 
-    const handleMapClick = () => {
-
-    }
-
 
     return (
         <div className='slider'>
@@ -46,10 +42,10 @@ export default function Home_Slider({data, likedData, onLikeClick}) {
                 {formOfRecreation?.map((form) => (
                     <SwiperSlide key={form.id} className="swiper-slide">
                         <h2 className={`swiper-slide__hdl swiper-slide__hdl--${getDayNightColors()}`}>{form.name}</h2>
-                        <img
-                            src={`./src/assets/${form.name.toLowerCase()}.jpg`}
-                            alt={`${form.name} img`}
-                        />
+                            <img
+                                src={`./src/assets/${form.name.toLowerCase()}.jpg`}
+                                alt={`${form.name} img`}
+                            />
                         <div className="icons">
                             <PiThumbsUpLight
                                 className={`icon icon--${getDayNightColors()} ${likedData && likedData.find((likedForm) => likedForm.id === form.id && likedForm.liked) ? `liked--${getDayNightColors()}` : ''}`}

@@ -1,0 +1,160 @@
+@import "../utils/functions";
+@import "../utils/mixins";
+@import "../variables";
+
+.add {
+  height: 100vh;
+  width: 100%;
+  @include flex(flex-start, center);
+  flex-direction: column;
+
+  .add-glass {
+    margin-top: px-to-rem(60px);
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: px-to-rem(20px);
+    @include flex(center, center);
+    flex-direction: column;
+    box-shadow: 0 px-to-rem(8px) px-to-rem(32px) 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: px-to-rem(20px);
+
+    &__hdl {
+      margin-bottom: px-to-rem(30px);
+      margin-top: 0;
+      background-image: none;
+
+      &--day {
+        color: $Happy-Mom-5-hex;
+      }
+
+      &--night {
+        color: $Poseidon-5-hex;
+      }
+    }
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: px-to-rem(15px);
+      width: px-to-rem(220px);
+
+      .form-group {
+        display: block;
+
+        &__in {
+          width: 100%;
+          padding: px-to-rem(10px);
+          border-radius: px-to-rem(20px);
+          background: none;
+
+
+          &--day {
+            border: 1px solid $Happy-Mom-4-hex;
+            color: $Happy-Mom-5-hex;
+            caret-color: $Happy-Mom-5-hex;
+            outline: $Happy-Mom-5-hex;
+
+            &::placeholder {
+              color: $Happy-Mom-5-hex;
+            }
+          }
+
+          &--night {
+            border: 1px solid $Poseidon-1-hex;
+            color: $Poseidon-5-hex;
+            caret-color: $Poseidon-5-hex;
+            outline: $Poseidon-5-hex;
+
+            &::placeholder {
+              color: $Poseidon-1-hex;
+            }
+          }
+        }
+      }
+
+      .weather-check {
+        @include flex(center, start);
+        flex-direction: column;
+        border-radius: px-to-rem(20px);
+        gap: px-to-rem(10px);
+        padding: px-to-rem(10px);
+
+        &--day {
+          border: 1px solid $Happy-Mom-4-hex;
+          color: $Happy-Mom-5-hex;
+          caret-color: $Happy-Mom-5-hex;
+          outline: $Happy-Mom-5-hex;
+
+          &::placeholder {
+            color: $Happy-Mom-5-hex;
+          }
+        }
+
+        &--night {
+          border: 1px solid $Poseidon-1-hex;
+          color: $Poseidon-5-hex;
+          caret-color: $Poseidon-5-hex;
+          outline: $Poseidon-5-hex;
+
+          &::placeholder {
+            color: $Poseidon-1-hex;
+          }
+        }
+
+        .checkmarks {
+          display: flex;
+          flex-wrap: wrap;
+          gap: px-to-rem(25px);
+
+          .checkmark {
+            display: flex;
+            align-items: center;
+            gap: px-to-rem(5px);
+
+            &--day input[type="checkbox"] {
+              border: 1px solid $Happy-Mom-4-hex;
+              appearance: none;
+              width: px-to-rem(18px);
+              height: px-to-rem(18px);
+              border-radius: 50%;
+              cursor: pointer;
+
+              &:checked {
+                background-color: $Happy-Mom-4-hex;
+              }
+            }
+
+            &--night input[type="checkbox"] {
+              border: 1px solid $Poseidon-1-hex;
+              appearance: none;
+              width: px-to-rem(18px);
+              height: px-to-rem(18px);
+              border-radius: 50%;
+              cursor: pointer;
+
+              &:checked {
+                background-color: $Poseidon-1-hex;
+              }
+            }
+
+          }
+        }
+      }
+
+      .form__btn {
+        margin-bottom: px-to-rem(120px);
+
+        &--day {
+          background-color: $Happy-Mom-4-hex;
+          color: $Happy-Mom-5-hex;
+        }
+
+        &--night {
+          background-color: $Poseidon-1-hex;
+          color: $Poseidon-5-hex;
+        }
+      }
+    }
+  }
+}

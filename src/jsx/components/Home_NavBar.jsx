@@ -3,6 +3,7 @@ import supabase, {updateLikedStatus} from "../../api/supabase.js";
 import Home_Slider from "./Home_Slider.jsx";
 import {NavBar_Weather} from "./NavBar_Weather.jsx";
 import {NavBar_Options} from "./NavBar_Options.jsx";
+import {Home_AddYourOwnOption} from "./Home_AddYourOwnOption.jsx";
 
 
 

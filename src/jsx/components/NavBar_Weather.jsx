@@ -36,8 +36,8 @@ export function NavBar_Weather({selectedWeather, setSelectedWeather}) {
                     onClick={() => handleWeatherIconClick("snow")}
                 />
             </div>
-            <p className={`weather__dsc weather__dsc--${getDayNightColors()}`}>Look out the window and choose the
-                conditions outside, then decide how you want to spend your time</p>
+            <p className={`weather__dsc weather__dsc--${getDayNightColors()}`}>Look out the window, observe the
+                conditions outside, and then decide how you want to spend your time. Check it out!</p>
         </section>
     );
 }

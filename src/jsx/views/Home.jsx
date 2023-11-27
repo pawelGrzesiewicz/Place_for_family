@@ -1,16 +1,19 @@
 import {useEffect, useState} from 'react';
 import supabase from '../../api/supabase.js';
 import {useNavigate} from 'react-router-dom';
-
 import {Home_Headline} from "../components/Home_Headline.jsx";
 import {Home_NavBar} from "../components/Home_NavBar.jsx";
-import useDayNightMode from "../hooks/useDayNightMode.js";
 import Footer from "../components/Footer.jsx";
+import useDayNightMode from "../hooks/useDayNightMode.js";
+import {useFamilyData} from "../hooks/FamilyDataContext.jsx";
+import {Home_AddYourOwnOption} from "../components/Home_AddYourOwnOption.jsx";
 
 export default function Home() {
 
-    const [notes, setNotes] = useState(null);
-    const { getDayNightColors } = useDayNightMode();
+    const {familyData, updateFamilyData} = useFamilyData();
+    const [error, setError] = useState(null);
+    const {getDayNightColors} = useDayNightMode();
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -21,52 +24,42 @@ export default function Home() {
         const {data, error} = await supabase.auth.getSession();
 
         if (!data.session) {
-            navigation('/signup');
+            navigate('/signup');
             return;
         }
 
-        await getNotes();
+        await getFamilyData();
     }
 
-    async function getNotes() {
-        let {data: notes, error} = await supabase.from('notes').select('*');
+    async function getFamilyData() {
 
-        if (!error) {
-            setNotes(notes);
+        try {
+            const {data: {user}} = await supabase.auth.getUser()
+            const userEmail = user?.email;
+
+            const {data, error} = await supabase
+                .from('usersData')
+                .select('*')
+                .eq('email', userEmail);
+
+            if (error) {
+                console.error(error);
+                setError("Error retrieving family data. try again.");
+            } else {
+                updateFamilyData(data);
+            }
+        } catch (error) {
+            console.error(error.message);
+            setError("An error occurred while retrieving family information.");
         }
     }
-
-
-    // async function handleOnSubmit(e) {
-    //     e.preventDefault();
-    //
-    //     const {data, error} = await supabase
-    //         .from('notes')
-    //         .insert([{note: e.target.elements[0].value}])
-    //         .select();
-    //
-    //     if (!error) {
-    //         setNotes(prev => [...prev, data[0]]);
-    //     }
-    // }
-
-
-
 
 
     return (
         <section className={`home ${getDayNightColors()}`}>
-            <Home_Headline/>
+            <Home_Headline familyData={familyData}/>
             <Home_NavBar/>
-
-            {/*<form onSubmit={handleOnSubmit}>*/}
-            {/*    <textarea/>*/}
-            {/*    <button>Save</button>*/}
-            {/*</form>*/}
-            {/*<ul>*/}
-            {/*    {notes && notes.map((note) => <li key={note.id}>{note.note}</li>)}*/}
-            {/*</ul>*/}
-
+            <Home_AddYourOwnOption/>
             <Footer/>
         </section>
     );

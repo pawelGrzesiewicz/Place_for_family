@@ -8,6 +8,7 @@
 }
 html, body {
   font-size: $base-font-size;
+  overflow-y: auto;
 }
 
 .btn {
@@ -15,4 +16,17 @@ html, body {
   border-radius: px-to-rem(20px);
   padding: px-to-rem(10px);
   font-weight: 600;
+}
+
+
+.day {
+  background-image: url(./src/assets/day.png);
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.night {
+  background-image: url(./src/assets/night.png);
+  background-position: center;
+  background-size: 100% 100%;
 }

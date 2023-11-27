@@ -1,42 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import supabase from "../../api/supabase.js";
+import React from 'react';
 import useDayNightMode from "../hooks/useDayNightMode.js";
 import {FaTheRedYeti} from "react-icons/fa";
+import {useFamilyData} from "../hooks/FamilyDataContext.jsx";
 
 
 export function Home_Headline() {
 
-    const [familyData, setFamilyData] = useState(null);
-    const [error, setError] = useState(null);
     const {getDayNightColors} = useDayNightMode();
+    const { familyData, updateFamilyData } = useFamilyData();
 
-
-    useEffect(() => {
-        getFamilyData();
-    }, []);
-
-    async function getFamilyData() {
-
-        try {
-            const {data: {user}} = await supabase.auth.getUser()
-            const userEmail = user?.email;
-
-            const {data, error} = await supabase
-                .from('usersData')
-                .select('*')
-                .eq('email', userEmail);
-
-            if (error) {
-                console.error(error);
-                setError("Error retrieving family data. try again.");
-            } else {
-                setFamilyData(data);
-            }
-        } catch (error) {
-            console.error(error.message);
-            setError("An error occurred while retrieving family information.");
-        }
-    }
 
     return (
         <section className='greeting'>

@@ -4,7 +4,7 @@
 
 
 .slider {
-  height: 100%;
+
   .swiper {
     width: 100%;
     padding-top: px-to-rem(30px);
@@ -21,6 +21,7 @@
     background-position: center;
     background-size: cover;
     width: 300px;
+    padding-inline: px-to-rem(15px);
 
     &__hdl {
       &--day {
@@ -33,8 +34,10 @@
     }
 
     img {
-      height: px-to-rem(200px);
       margin-bottom: px-to-rem(5px);
+      height: px-to-rem(200px);
+      width: px-to-rem(250px);
+      object-fit: cover;
     }
 
     .icons {
