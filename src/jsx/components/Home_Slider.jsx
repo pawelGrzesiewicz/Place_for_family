@@ -8,6 +8,7 @@ import {EffectCoverflow, Pagination} from 'swiper/modules';
 import useDayNightMode from '../hooks/useDayNightMode.js';
 import {updateLikedStatus} from "../../api/supabase.js";
 import {Link} from "react-router-dom";
+import {FaTheRedYeti} from "react-icons/fa";
 
 
 export default function Home_Slider({data, likedData, onLikeClick}) {
