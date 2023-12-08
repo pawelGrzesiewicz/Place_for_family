@@ -8,7 +8,6 @@ import {EffectCoverflow, Pagination} from 'swiper/modules';
 import useDayNightMode from '../hooks/useDayNightMode.js';
 import {updateLikedStatus} from "../../api/supabase.js";
 import {Link} from "react-router-dom";
-import {FaTheRedYeti} from "react-icons/fa";
 
 
 export default function Home_Slider({data, likedData, onLikeClick}) {
@@ -44,8 +43,8 @@ export default function Home_Slider({data, likedData, onLikeClick}) {
                     <SwiperSlide key={form.id} className="swiper-slide">
                         <h2 className={`swiper-slide__hdl swiper-slide__hdl--${getDayNightColors()}`}>{form.name}</h2>
                             <img
-                                src={`./src/assets/${form.name.toLowerCase()}.jpg`}
-                                alt={`${form.name} img`}
+                                src={`/${form.name}.jpg`}
+                                alt={`${form.name}`}
                             />
                         <div className="icons">
                             <PiThumbsUpLight

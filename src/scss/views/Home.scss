@@ -3,8 +3,13 @@
 @import "../variables";
 
 .home {
+  position: relative;
   transition: background-color .5s ease;
   height: 100vh;
   width: 100%;
-  max-width: px-to-rem(430px);
+}
+
+.home > :last-child {
+  position: absolute;
+  bottom: 0;
 }
